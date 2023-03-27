@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navigation from "@components/nav/Navigation";
 import Header from "@components/Header";
+import Footer from "@components/Footer";
 
 export const metadata = {
   title: "Kannu Mandora | Tech Blogger",
@@ -19,6 +20,7 @@ export default function RootLayout({
         <Navigation />
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
