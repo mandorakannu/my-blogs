@@ -8,7 +8,7 @@ const outfit = Outfit({
 export default function Home() {
   return (
     <>
-      <div className="flex justify-center items-center py-20">
+      <div className="flex justify-center items-center py-20 mx-5">
         <div className="relative border border-red-400">
           <span className="absolute top-0 bg-white text-3xl px-5 py-3 border-r border-b border-red-400">
             FEATURED POST

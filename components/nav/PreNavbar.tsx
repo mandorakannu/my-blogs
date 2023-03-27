@@ -10,7 +10,7 @@ export default function PreNavbar() {
   return (
     <>
       <div
-        className={`border-t border-b border-black mx-5 flex justify-center items-center ${outfit.className}`}
+        className={`border-t border-b border-black mx-5 flex justify-center items-center max-sm:hidden ${outfit.className}`}
       >
         <Link
           href="/"
