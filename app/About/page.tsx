@@ -10,7 +10,7 @@ export default function page() {
   return (
     <>
       <div
-        className={`${outfit.className} flex flex-col justify-center items-center my-20 w-2/3 mx-auto border border-red-400 p-20`}
+        className={`${outfit.className} flex flex-col justify-center items-center my-20 mx-5 border border-red-400 p-20 max-sm:px-5`}
       >
         <Image
           src="/images/typewriter.jpg"
