@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Outfit } from "next/font/google";
-import { BsInstagram, BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";
+import SocialIcons from "@components/Social-Icons";
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -36,23 +36,7 @@ export default function PreNavbar() {
         >
           Contact
         </Link>
-        <div className="flex border-r border-black py-2.5 gap-4 px-2">
-          <Link href="https://instagram.com/mandorakannu/" target="_blank">
-            <BsInstagram className="text-2xl text-black transition-all delay-75 ease-in-out rounded p-1 hover:bg-red-200" />
-          </Link>
-          <Link href="https://github.com/Kannu-Mandora/" target="_blank">
-            <BsGithub className="text-2xl text-black transition-all delay-75 ease-in-out rounded p-1 hover:bg-red-200" />
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/kannu-mandora-3132b1214/"
-            target="_blank"
-          >
-            <BsLinkedin className="text-2xl text-black transition-all delay-75 ease-in-out rounded p-1 hover:bg-red-200" />
-          </Link>
-          <Link href="https://twitter.com/KannuMandora/" target="_blank">
-            <BsTwitter className="text-2xl text-black transition-all delay-75 ease-in-out rounded p-1 hover:bg-red-200" />
-          </Link>
-        </div>
+        <SocialIcons />
       </div>
     </>
   );
