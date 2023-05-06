@@ -22,6 +22,8 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["./components/*"],
+      "@jsonsFiles/*": ["./assets/jsons/*"],
+      "@images/*": ["./public/images/*"],
       "@styles/*": ["./assets/styles"],
       "@ts/*": ["./assets/ts"],
       "@databases/*": ["./backend/databases"],
