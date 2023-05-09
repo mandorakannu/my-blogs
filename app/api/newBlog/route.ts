@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     return new Response(JSON.stringify({ message: "error", error: err }), {
       headers: { "content-type": "application/json" },
+      status: 500,
     });
   }
   await disconnectDB();

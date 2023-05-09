@@ -15,12 +15,12 @@ export async function GET(request: Request) {
         return new Response(JSON.stringify({ message: "Error" }), headers);
       }
     } catch (err: unknown) {
-      return new Response(JSON.stringify({ message: err }), headers);
+      return new Response(JSON.stringify({ message: err }), {...headers, status: 500});
     }
   } else {
     return new Response(
       JSON.stringify({ message: "Authenicate is not occured!" }),
-      headers
+      {...headers, status: 500}
     );
   }
 }
