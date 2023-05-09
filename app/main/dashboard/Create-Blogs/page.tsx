@@ -54,7 +54,11 @@ function CreateBlogs() {
     }
   };
   const onSubmitHandler = async () => {
-    if (blogTitleRef.current && blogDescriptionRef.current) {
+    if (
+      blogTitleRef.current?.value &&
+      blogDescriptionRef.current?.value &&
+      contentRef.current?.value
+    ) {
       const blogTitle = blogTitleRef.current.value;
       const blogDescription = blogDescriptionRef.current.value;
       const blogContent = contentRef.current?.value;
@@ -64,16 +68,16 @@ function CreateBlogs() {
           blogDescription,
           blogContent,
         });
-        const { message } = res.data;
+        const { message, error }: { message: string; error: Error } = res.data;
         if (message !== "success")
           return alert(`Something went wrong! status code ${res.status}`);
-          else {
-            alert("Blog published successfully");
-          }
+        else {
+          alert("Blog published successfully");
+        }
       } catch (err) {
         console.log("ERROR", err);
       }
-    }
+    } else window.alert("Please fill all the fields");
   };
   return (
     <>
