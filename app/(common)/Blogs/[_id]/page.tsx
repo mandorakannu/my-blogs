@@ -18,7 +18,7 @@ const BlogPage = async (_id: string) => {
     const data = await res.json();
     return data;
   } catch (err) {
-    console.log("ERROR IN SERVER COMPONENT");
+    console.log(err);
   }
 };
 
@@ -30,7 +30,6 @@ export default async function Blog({
   const author: string = process.env.AUTHOR!;
   const blog: Blogs = await BlogPage(_id);
   const blogContent = () => {
-    console.log(blog.content);
     return { __html: blog.content };
   };
 
