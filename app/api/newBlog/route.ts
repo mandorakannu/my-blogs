@@ -6,20 +6,19 @@ export async function POST(request: NextRequest) {
   const { blogTitle, blogDescription, blogContent } = await request.json();
   try {
     await connectDB();
-    const res = await Post.create({
+    await Post.create({
       title: blogTitle,
       description: blogDescription,
       content: blogContent,
     });
-    await res.save();
+    await disconnectDB();
+    return new Response(JSON.stringify({ message: "success" }), {
+      headers: { "content-type": "application/json" },
+    });
   } catch (err) {
     return new Response(JSON.stringify({ message: "error", error: err }), {
       headers: { "content-type": "application/json" },
       status: 500,
     });
   }
-  await disconnectDB();
-  return new Response(JSON.stringify({ message: "success" }), {
-    headers: { "content-type": "application/json" },
-  });
 }
