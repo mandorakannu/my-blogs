@@ -3,6 +3,7 @@ import image from "@images/featured-post.webp"
 import Image from "next/image";
 import { Outfit } from "next/font/google";
 import BlogFooter from "@components/BlogFooter";
+import { Fragment } from "react";
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
@@ -14,7 +15,7 @@ type MainContent = {
   quote: string;
   urlToImage: string;
 };
-function FeaturedPost() {
+function FeaturedPost(): JSX.Element {
   return (
     <>
       <div className={`grid grid-cols-1 gap-6 justify-start border border-black mx-5 my-10 p-20 ${outfit.className}`}>
@@ -25,7 +26,7 @@ function FeaturedPost() {
         <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
           {data.map((item: MainContent) => {
             return (
-              <>
+              <Fragment key={item.title}>
                 <h1 className="text-5xl">{item.title}</h1>
                 <h2 className="text-2xl font-normal text-zinc-400">{item.subTitle}</h2>
                 <Image
@@ -40,7 +41,7 @@ function FeaturedPost() {
                   <p className="text-lg">Every layout comes with the latest social features built in. Readers will be able to easily share posts on social networks like Facebook and Twitter, view how many people have liked a post, made comments and more. With Wix, building your online community has never been easier.</p>
                 </section>
                 <BlogFooter />
-              </>
+              </Fragment>
             );
           })}
         </section>
