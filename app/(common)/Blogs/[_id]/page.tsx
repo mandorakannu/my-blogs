@@ -30,12 +30,10 @@ export default async function Blog({
   const blog: Blogs = await BlogPage(_id);
 
   return (
-    <div className="w-1/2 mx-auto my-6 py-4" key={blog.title}>
-      <div className="flex flex-col items-start justify-start border-2 border-gray-200 p-5 mb-5">
+      <div className="flex flex-col items-start justify-start border-2 border-gray-200 p-5 m-5 gap-3" key={blog.title}>
         <h1 className="text-2xl">{blog.title}</h1>
         <h3 className="text-base">{blog.description}</h3>
         <p className="text-base" dangerouslySetInnerHTML={{__html: blog.content}}></p>
-      </div>
     </div>
   );
 }

@@ -25,12 +25,12 @@ export default async function Blogs() {
   return (
     <>
       <h1 className="text-center text-4xl text-red-500 mt-10 mb-10">Blogs</h1>
-      <div className="w-1/2 mx-auto">
+      <div className="w-4/5 mx-auto grid grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 grid-flow-row-dense gap-10">
         {blogs.map((blog: BlogsProps) => {
           return (
             <Link href={`/Blogs/${blog._id}`} key={blog.title}>
               <div className="flex flex-col items-start justify-start border-2 border-gray-200 p-5 mb-5">
-                <h1 className="text-2xl">{blog.title}</h1>
+                <h1 className="text-2xl hover:text-red-400 transition-colors delay-75 ease-in-out">{blog.title}</h1>
                 <h3 className="text-base">{blog.description}</h3>
               </div>
             </Link>
