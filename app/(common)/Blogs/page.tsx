@@ -12,7 +12,7 @@ type BlogsProps = {
 const fetchBlogs = async () => {
   const url = process.env.BASE_URL;
   try {
-    const res = await fetch(`${url}/api/findBlogs`, { cache: "force-cache" });
+    const res = await fetch(`${url}/api/findBlogs`);
     const data = await res.json();
     return data;
   } catch (err) {
