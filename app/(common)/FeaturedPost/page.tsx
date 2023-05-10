@@ -18,8 +18,8 @@ type MainContent = {
 function FeaturedPost(): JSX.Element {
   return (
     <>
-      <div className={`grid grid-cols-1 gap-6 justify-start border border-black mx-5 my-10 p-20 ${outfit.className}`}>
-        <section className="flex justify-between items-center">
+      <div className={`grid grid-cols-1 gap-6 justify-start border border-black mx-5 my-10 ${outfit.className}`}>
+        <section className="flex justify-between items-center p-5">
           <span>May 6&nbsp;·&nbsp;2 min read</span>
           <span className="scale-150">· · ·</span>
         </section>
@@ -27,8 +27,8 @@ function FeaturedPost(): JSX.Element {
           {data.map((item: MainContent) => {
             return (
               <Fragment key={item.title}>
-                <h1 className="text-5xl">{item.title}</h1>
-                <h2 className="text-2xl font-normal text-zinc-400">{item.subTitle}</h2>
+                <h1 className="max-lg:text-3xl text-4xl">{item.title}</h1>
+                <h2 className="text-xl font-normal text-zinc-400">{item.subTitle}</h2>
                 <Image
                   src={image}
                   alt="Featured Post"
