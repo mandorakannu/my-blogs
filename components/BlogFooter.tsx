@@ -9,7 +9,7 @@ export default function BlogFooter() {
       <section className="flex justify-between items-center">
         <SocialIcons />
         <Link href="/" className="text-lg text-red-400">
-          Back to Home
+          Home
         </Link>
       </section>
     </>

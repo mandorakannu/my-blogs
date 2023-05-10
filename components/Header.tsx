@@ -1,5 +1,3 @@
-"use client";
-import { usePathname } from "next/navigation";
 import { Playfair_Display } from "next/font/google";
 import PreNavbar from "./nav/PreNavbar";
 const font = Playfair_Display({
@@ -8,10 +6,8 @@ const font = Playfair_Display({
 });
 
 export default function Header() {
-  const router = usePathname();
   return (
     <>
-      {router === "/dashboard" ? null : (
         <div
           className={`font-sans py-6 flex flex-col justify-center items-center gap-10 my-6`}
         >
@@ -22,7 +18,6 @@ export default function Header() {
             Train of Thought
           </h2>
         </div>
-      )}
       <PreNavbar />
     </>
   );
