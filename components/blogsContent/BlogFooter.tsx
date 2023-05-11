@@ -1,5 +1,5 @@
 import React from "react";
-import SocialIcons from "./Social-Icons";
+import SocialIcons from "../Social-Icons";
 import Link from "next/link";
 
 export default function BlogFooter() {
