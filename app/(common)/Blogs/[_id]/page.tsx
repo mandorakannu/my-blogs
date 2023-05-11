@@ -1,9 +1,19 @@
+import ReadingTime from "@components/blogsContent/ReadingTime";
+import BlogFormat from "@components/blogsContent/BlogFormat";
+import imagePost from "@images/featured-post.webp";
+
 type Blogs = {
   _id: string;
   title: string;
+  subTitle: string;
+  imageAltText: string;
+  author: string;
   description: string;
-  content: HTMLElement;
-  createdAt: Date;
+  quote: string;
+  quoteDescription: string;
+  heading: string;
+  content: string;
+  createdAt: string;
 };
 const BlogPage = async (_id: string) => {
   const url = process.env.BASE_URL;
@@ -28,12 +38,34 @@ export default async function Blog({
   params: { _id: string };
 }) {
   const blog: Blogs = await BlogPage(_id);
-
+  const {
+    title,
+    subTitle,
+    imageAltText,
+    author,
+    description,
+    quote,
+    quoteDescription,
+    heading,
+    content,
+  } = blog;
   return (
-      <div className="flex flex-col items-start justify-start border-2 border-gray-200 p-5 m-5 gap-3" key={blog.title}>
-        <h1 className="text-2xl">{blog.title}</h1>
-        <h3 className="text-base">{blog.description}</h3>
-        <p className="text-base" dangerouslySetInnerHTML={{__html: blog.content}}/>
-    </div>
+    <>
+      <ReadingTime time={blog?.content?.length} date={blog.createdAt} />
+      <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
+        <BlogFormat
+          title={title}
+          subTitle={subTitle}
+          imageAltText={imageAltText}
+          author={author}
+          description={description}
+          quote={quote}
+          quoteDescription={quoteDescription}
+          heading={heading}
+          content={content}
+          urlToImage={imagePost}
+        />
+      </section>
+    </>
   );
 }

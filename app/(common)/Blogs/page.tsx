@@ -1,43 +1,62 @@
-"use client";
+import imagePost from "@images/featured-post.webp";
+import { Outfit } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-interface Blog {
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
+type Blogs = {
   _id: string;
   title: string;
+  subTitle: string;
+  imageAltText: string;
+  author: string;
   description: string;
+  quote: string;
+  quoteDescription: string;
+  heading: string;
   content: string;
   createdAt: string;
-  __v?: number;
-}
+}[];
 
-export default function Blog() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const fetchBlogs = async () => {
-    try {
-      const res = await fetch("/api/findBlogs", { cache: "force-cache" });
-      const data = await res.json();
-      setBlogs(data);
-    } catch (err: any) {
-      alert("Internal Server Error! status code: 500");
-    }
-  };
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
+const getAllBlogs = async () => {
+  const url = process.env.BASE_URL;
+  const res = await fetch(`${url}/api/findBlogs`);
+  const data = await res.json();
+  return data;
+};
+
+async function Blogs(): Promise<JSX.Element> {
+  const blogs: Blogs = await getAllBlogs();
   return (
     <>
-      <h1 className="text-center text-4xl text-red-500 mt-10 mb-10">Blogs</h1>
-      <div className="w-4/5 mx-auto grid grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 grid-flow-row-dense gap-10 my-6">
+      <section
+        className={`grid max-sm:grid-cols-1 md: grid-cols-2 md:grid-cols-3 gap-6 m-6 ${outfit.className}`}
+      >
         {blogs.map((blog) => (
-          <div key={blog._id} className="bg-gray-100 rounded-lg shadow-lg p-5">
-            <h2 className="text-2xl text-red-500 mb-2">{blog.title}</h2>
-            <p className="text-gray-500 mb-2">{blog.description}</p>
-            <Link href={`/Blogs/${blog._id}`} className="hover:opacity-50 transition-opacity ease-in-out delay-75">
-              Read More
-            </Link>
-          </div>
+          <Link
+            href={`/Blogs/${blog._id}`}
+            key={blog.title}
+            className="flex flex-col items-start justify-start w-full h-full space-y-8 bg-white border-2 border-gray-200"
+          >
+            <Image
+              src={imagePost}
+              alt={blog.imageAltText}
+              className="w-full h-full"
+            />
+            <span
+              className="text-2xl text-gray-800 hover:text-gray-700 px-1"
+              key={blog.title}
+            >
+              {blog.title}
+            </span>
+          </Link>
         ))}
-      </div>
+      </section>
     </>
   );
 }
+
+export default Blogs;
