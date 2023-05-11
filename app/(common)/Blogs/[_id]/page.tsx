@@ -8,7 +8,7 @@ type Blogs = {
 const BlogPage = async (_id: string) => {
   const url = process.env.BASE_URL;
   try {
-    const res = await fetch(`${url}/api/searchBlog`, { next: {revalidate: 60},
+    const res = await fetch(`${url}/api/searchBlog`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
