@@ -32,7 +32,7 @@ export default function Blog() {
           <div key={blog._id} className="bg-gray-100 rounded-lg shadow-lg p-5">
             <h2 className="text-2xl text-red-500 mb-2">{blog.title}</h2>
             <p className="text-gray-500 mb-2">{blog.description}</p>
-            <Link href={`/Blogs/${blog._id}`} className="hover:opacity-50 transition-opacity ease-in-out delay-75 ">
+            <Link href={`/Blogs/${blog._id}`} className="hover:opacity-50 transition-opacity ease-in-out delay-75">
               Read More
             </Link>
           </div>
