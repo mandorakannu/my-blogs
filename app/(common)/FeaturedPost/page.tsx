@@ -1,49 +1,70 @@
-import data from "@jsonsFiles/featurePost.json";
-import image from "@images/featured-post.webp"
-import Image from "next/image";
+import featuredPost from "@images/featured-post.webp";
 import { Outfit } from "next/font/google";
-import BlogFooter from "@components/BlogFooter";
-import { Fragment } from "react";
+import ReadingTime from "@components/blogsContent/ReadingTime";
+import BlogFormat from "@components/blogsContent/BlogFormat";
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-})
+});
 type MainContent = {
   title: string;
   subTitle: string;
+  imageAltText: string;
   author: string;
+  description: string;
   quote: string;
-  urlToImage: string;
+  quoteDescription: string;
+  heading: string;
+  content: string;
+  createdAt: string;
 };
-function FeaturedPost(): JSX.Element {
+
+const getFeaturedPost = async () => {
+  const url = process.env.BASE_URL;
+  try {
+    const response = await fetch(`${url}/api/featuredPost`, {
+      method: "GET",
+      cache: "force-cache",
+    });
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+async function FeaturedPost(): Promise<JSX.Element> {
+  const data: MainContent = await getFeaturedPost();
+  const {
+    title,
+    subTitle,
+    imageAltText,
+    author,
+    description,
+    quote,
+    quoteDescription,
+    heading,
+    content,
+  } = data;
   return (
     <>
-      <div className={`grid grid-cols-1 gap-6 justify-start border border-black mx-5 my-10 ${outfit.className}`}>
-        <section className="flex justify-between items-center p-5">
-          <span>May 6&nbsp;·&nbsp;2 min read</span>
-          <span className="scale-150">· · ·</span>
-        </section>
+      <div
+        className={`grid grid-cols-1 gap-6 justify-start border border-black mx-5 my-10 ${outfit.className}`}
+      >
+        <ReadingTime time={data?.content?.length} date={data?.createdAt} />
         <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
-          {data.map((item: MainContent) => {
-            return (
-              <Fragment key={item.title}>
-                <h1 className="max-lg:text-3xl text-4xl">{item.title}</h1>
-                <h2 className="text-xl font-normal text-zinc-400">{item.subTitle}</h2>
-                <Image
-                  src={image}
-                  alt="Featured Post"
-                />
-                <h3 className="text-2xl">Author: {item.author}</h3>
-                <p className="text-lg">Welcome to your blog post. Use this space to connect with your readers and potential customers in a way that’s current and interesting. Think of it as an ongoing conversation where you can share updates about business, trends, news, and more. </p>
-                <section className="flex flex-col justify-center items-start gap-8">
-                  <h1 className="font-bold text-xl">Design with Ease</h1>
-                  <p className="text-lg bg-yellow-100 p-4 border-2 border-red-100">{item.quote}</p>
-                  <p className="text-lg">Every layout comes with the latest social features built in. Readers will be able to easily share posts on social networks like Facebook and Twitter, view how many people have liked a post, made comments and more. With Wix, building your online community has never been easier.</p>
-                </section>
-                <BlogFooter />
-              </Fragment>
-            );
-          })}
+          <BlogFormat
+            title={title}
+            subTitle={subTitle}
+            urlToImage={featuredPost}
+            imageAltText={imageAltText}
+            author={author}
+            description={description}
+            quote={quote}
+            quoteDescription={quoteDescription}
+            heading={heading}
+            content={content}
+          />
         </section>
       </div>
     </>
