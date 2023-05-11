@@ -33,7 +33,7 @@ export default async function Blog({
       <div className="flex flex-col items-start justify-start border-2 border-gray-200 p-5 m-5 gap-3" key={blog.title}>
         <h1 className="text-2xl">{blog.title}</h1>
         <h3 className="text-base">{blog.description}</h3>
-        <p className="text-base" dangerouslySetInnerHTML={{__html: blog.content}}></p>
+        <p className="text-base" dangerouslySetInnerHTML={{__html: blog.content}}/>
     </div>
   );
 }
