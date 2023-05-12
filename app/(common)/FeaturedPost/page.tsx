@@ -19,17 +19,16 @@ type MainContent = {
   createdAt: string;
 };
 
-const getFeaturedPost = async () => {
-  const url = process.env.BASE_URL;
+const getFeaturedPost = async (): Promise<any> => {
+  const BASE_URL = process.env.BASE_URL;
   try {
-    const response = await fetch(`${url}/api/featuredPost`, {
-      method: "GET",
+    const response = await fetch(`${BASE_URL}/api/featuredPost`, {
       cache: "force-cache",
     });
     const data = await response.json();
     return data;
-  } catch (err) {
-    console.log(err);
+  } catch (error: unknown) {
+    console.log(error);
   }
 };
 
@@ -45,13 +44,14 @@ async function FeaturedPost(): Promise<JSX.Element> {
     quoteDescription,
     heading,
     content,
+    createdAt,
   } = data;
   return (
     <>
       <div
         className={`grid grid-cols-1 gap-6 justify-start border border-black mx-5 my-10 ${outfit.className}`}
       >
-        <ReadingTime time={data?.content?.length} date={data?.createdAt} />
+        <ReadingTime time={content?.length} date={createdAt} />
         <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
           <BlogFormat
             title={title}

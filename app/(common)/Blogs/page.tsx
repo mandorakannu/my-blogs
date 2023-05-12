@@ -21,11 +21,17 @@ type Blogs = {
   createdAt: string;
 }[];
 
-const getAllBlogs = async () => {
-  const url = process.env.BASE_URL;
-  const res = await fetch(`${url}/api/findBlogs`);
-  const data = await res.json();
-  return data;
+const getAllBlogs = async (): Promise<any> => {
+  try {
+    const BASE_URL = process.env.BASE_URL;
+    const res = await fetch(`${BASE_URL}/api/findBlogs`,{
+      next: {revalidate: 60},
+    });
+    const data = await res.json();
+    return data;
+  } catch (error: unknown) {
+    console.log(error);
+  }
 };
 
 async function Blogs(): Promise<JSX.Element> {

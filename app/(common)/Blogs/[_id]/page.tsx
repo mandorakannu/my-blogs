@@ -15,10 +15,11 @@ type Blogs = {
   content: string;
   createdAt: string;
 };
-const BlogPage = async (_id: string) => {
-  const url = process.env.BASE_URL;
+const BlogPage = async (_id: string): Promise<any> => {
+  const BASE_URL = process.env.BASE_URL;
   try {
-    const res = await fetch(`${url}/api/searchBlog`, {
+    const res = await fetch(`${BASE_URL}/api/searchBlog`, {
+      cache: "force-cache",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,10 +49,11 @@ export default async function Blog({
     quoteDescription,
     heading,
     content,
+    createdAt,
   } = blog;
   return (
     <>
-      <ReadingTime time={blog?.content?.length} date={blog.createdAt} />
+      <ReadingTime time={content?.length} date={createdAt} />
       <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
         <BlogFormat
           title={title}
