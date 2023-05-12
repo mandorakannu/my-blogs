@@ -1,7 +1,7 @@
-import { cookies } from "next/headers";
 import { verify } from "jsonwebtoken";
-export async function GET(request: Request) {
-  const token = cookies().get("validation")?.value;
+import { NextRequest } from "next/server";
+export async function GET(request: NextRequest) {
+  const token = request.cookies.get("validation")?.value;
   const Key = process.env.SECRET_KEY;
   const headers: Object = {
     headers: { "content-type": "application/json" },

@@ -10,11 +10,11 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json(); // Accepting the email & password from the client side
 
-    const validEmailId: boolean = bcryptjs.compareSync(
+    const validEmailId: boolean = await bcryptjs.compare(
       email,
       process.env.EMAIL_ID!
     );
-    const validEmailPassword: boolean = bcryptjs.compareSync(
+    const validEmailPassword: boolean = await bcryptjs.compare(
       password,
       process.env.EMAIL_PASSWORD!
     );
@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
         path: "/",
         secure: true,
         sameSite: "strict",
+        expries: new Date(Date.now() + 1000 * 60 * 60)
       });
       return new Response(JSON.stringify({ message: "success" }), headers);
     }
