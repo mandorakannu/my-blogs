@@ -68,7 +68,7 @@ function CreateBlogs() {
           blogDescription,
           blogContent,
         });
-        const { message, error }: { message: string; error: Error } = res.data;
+        const { message }: { message: string } = res.data;
         if (message !== "success")
           return alert(`Something went wrong! status code ${res.status}`);
         else {
