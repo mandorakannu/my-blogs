@@ -25,7 +25,7 @@ const getAllBlogs = async (): Promise<any> => {
   try {
     const BASE_URL = process.env.BASE_URL;
     const res = await fetch(`${BASE_URL}/api/findBlogs`,{
-      next: {revalidate: 60},
+      next: {revalidate: 30},
     });
     const data = await res.json();
     return data;
