@@ -1,11 +1,33 @@
 "use client";
-import { FormEvent } from "react";
-
+import { FormEvent, useRef } from "react";
+import axios from "axios";
 export default function Form() {
-  const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // TODO : Add Form functionality
-    alert("Form is not yet functional");
+    const email = emailRef.current?.value;
+    const message = messageRef.current?.value;
+    try{
+      if(email === "" || message === "") {
+       return alert("please fill all fields");
+      }
+      console.log(email, message)
+      const response = await axios.post("/api/contact", {email, message});
+      const {result} = response.data;
+      if(result === "success"){
+        alert("message sent successfully");
+        emailRef.current!.value = "";
+        messageRef.current!.value = "";
+      }
+      else{
+        alert("Something went wrong, please try again later. Status Code: " + response.status);
+      }
+      
+    } catch(error){
+      alert("Internal Server Error, please try again later.");
+      console.log(error);
+    }
   };
   return (
     <>
@@ -16,7 +38,7 @@ export default function Form() {
           </h2>
           <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 sm:text-xl">
             Got a technical issue? Want to send feedback about a beta feature?
-            Need details about our Business plan? Let us know.
+            Let us know.
           </p>
           <form className="space-y-8" onSubmit={onSubmitHandler}>
             <div>
@@ -29,6 +51,7 @@ export default function Form() {
               <input
                 type="email"
                 id="email"
+                ref={emailRef}
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="name@example.com"
                 required
@@ -43,6 +66,7 @@ export default function Form() {
               </label>
               <textarea
                 id="message"
+                ref={messageRef}
                 className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300"
                 placeholder="Leave a comment..."
               ></textarea>
