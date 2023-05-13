@@ -19,7 +19,7 @@ const BlogPage = async (_id: string): Promise<any> => {
   const BASE_URL = process.env.BASE_URL;
   try {
     const res = await fetch(`${BASE_URL}/api/searchBlog`, {
-      next: {revalidate: 30},
+      cache: "no-cache",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
