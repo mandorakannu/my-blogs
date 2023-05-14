@@ -14,6 +14,7 @@ type Blogs = {
   heading: string;
   content: string;
   createdAt: string;
+  date: string;
 };
 const BlogPage = async (_id: string): Promise<any> => {
   const BASE_URL = process.env.BASE_URL;
@@ -50,10 +51,11 @@ export default async function Blog({
     heading,
     content,
     createdAt,
+    date
   } = blog;
   return (
     <>
-      <ReadingTime time={content?.length} date={createdAt} />
+      <ReadingTime time={content?.length} date={date} />
       <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
         <BlogFormat
           title={title}
