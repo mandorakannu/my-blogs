@@ -26,6 +26,7 @@ const getAllBlogs = async (): Promise<any> => {
     const BASE_URL = process.env.BASE_URL;
     const res = await fetch(`${BASE_URL}/api/findBlogs`,{
       cache: "no-cache",
+      next: {revalidate: 60}
     });
     const data = await res.json();
     return data;

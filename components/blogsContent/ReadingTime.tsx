@@ -30,7 +30,7 @@ export default function ReadingTime({ date, time }: Props) {
   return (
     <section className="flex justify-between items-center pt-10 mx-auto w-4/5">
       <span>
-        {date.split("T")[0]}&nbsp;·&nbsp;{readTimeOfBlogContent} min read
+        {date}&nbsp;·&nbsp;{readTimeOfBlogContent} min read
       </span>
       <div className="relative scale-150 cursor-pointer font-sans">
         <span onClick={sharePostIcon}>···</span>
