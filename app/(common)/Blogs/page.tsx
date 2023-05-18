@@ -21,8 +21,8 @@ type Blogs = {
 
 const getAllBlogs = async (): Promise<any> => {
   try {
-    const BASE_URL = process.env.BASE_URL;
-    const res = await fetch(`${BASE_URL}/api/findBlogs`,{
+    const VERCEL_URL = process.env.VERCEL_URL;
+    const res = await fetch(`https://${VERCEL_URL}/api/findBlogs`,{
       cache: "no-cache",
       next: {revalidate: 10}
     });
