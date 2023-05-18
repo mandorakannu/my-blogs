@@ -1,6 +1,4 @@
-import imagePost from "@images/featured-post.webp";
 import { Outfit } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 const outfit = Outfit({
   subsets: ["latin"],
@@ -40,26 +38,24 @@ async function Blogs(): Promise<JSX.Element> {
   return (
     <>
       <section
-        className={`grid max-sm:grid-cols-1 md: grid-cols-2 md:grid-cols-3 gap-6 m-6 ${outfit.className}`}
+        className={`grid max-sm:grid-cols-1 md: grid-cols-2 md:grid-cols-3 gap-6 m-6 cursor-default ${outfit.className}`}
       >
         {blogs.map((blog) => (
-          <Link
-            href={`/Blogs/${blog._id}`}
-            key={blog.title}
-            className="flex flex-col items-start justify-start w-full h-full space-y-8 bg-white border-2 border-gray-200"
+          <div
+            key={blog._id}
+            className="flex flex-col justify-between p-4 bg-white rounded-lg shadow-lg border"
           >
-            <Image
-              src={imagePost}
-              alt={blog.imageAltText}
-              className="w-full h-full"
-            />
-            <span
-              className="text-2xl text-gray-800 hover:text-gray-700 px-1"
-              key={blog.title}
-            >
-              {blog.title}
-            </span>
-          </Link>
+              <div className="flex flex-col justify-start gap-2">
+                <h1 className="text-xl font-bold">{blog.title}</h1>
+                <h2>{blog.subTitle}</h2>
+              </div>
+              <Link
+                href={`/Blogs/${blog._id}`}
+                className="text-red-500 my-3 w-fit hover:underline underline-offset-4"
+              >
+                Read More...
+              </Link>
+          </div>
         ))}
       </section>
     </>

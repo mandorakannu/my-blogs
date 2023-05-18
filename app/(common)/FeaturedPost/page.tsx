@@ -17,6 +17,7 @@ type MainContent = {
   heading: string;
   content: string;
   createdAt: string;
+  date: string;
 };
 
 const getFeaturedPost = async (): Promise<any> => {
@@ -45,13 +46,14 @@ async function FeaturedPost(): Promise<JSX.Element> {
     heading,
     content,
     createdAt,
+    date
   } = data;
   return (
     <>
       <div
         className={`grid grid-cols-1 gap-6 justify-start border border-black mx-5 my-10 ${outfit.className}`}
       >
-        <ReadingTime time={content?.length} date={createdAt} />
+        <ReadingTime time={content?.length} date={date} />
         <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
           <BlogFormat
             title={title}
