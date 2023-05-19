@@ -1,6 +1,5 @@
 import ReadingTime from "@components/blogsContent/ReadingTime";
 import BlogFormat from "@components/blogsContent/BlogFormat";
-import imagePost from "@images/featured-post.webp";
 import { connectDB } from "@databases/connectionDB";
 import posts from "@models/posts/posts";
 
@@ -8,6 +7,7 @@ type Blogs = {
   _id: string;
   title: string;
   subTitle: string;
+  urlToImage: string;
   imageAltText: string;
   author: string;
   description: string;
@@ -34,6 +34,7 @@ export default async function Blog({
   const {
     title,
     subTitle,
+    urlToImage,
     imageAltText,
     author,
     description,
@@ -60,7 +61,7 @@ export default async function Blog({
               quoteDescription={quoteDescription}
               heading={heading}
               content={content}
-              urlToImage={imagePost}
+              urlToImage={urlToImage}
             />
           </section>
         </>
