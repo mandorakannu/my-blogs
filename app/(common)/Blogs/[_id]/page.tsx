@@ -1,6 +1,8 @@
 import ReadingTime from "@components/blogsContent/ReadingTime";
 import BlogFormat from "@components/blogsContent/BlogFormat";
 import imagePost from "@images/featured-post.webp";
+import { connectDB } from "@databases/connectionDB";
+import posts from "@models/posts/posts";
 
 type Blogs = {
   _id: string;
@@ -17,21 +19,9 @@ type Blogs = {
   date: string;
 };
 const BlogPage = async (_id: string): Promise<any> => {
-  const BASE_URL = process.env.BASE_URL;
-  try {
-    const res = await fetch(`${BASE_URL}/api/searchBlog`, {
-      cache: "force-cache",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ _id }),
-    });
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+  await connectDB();
+  const blog = await posts.findById(_id);
+  return blog;
 };
 
 export default async function Blog({
@@ -39,7 +29,8 @@ export default async function Blog({
 }: {
   params: { _id: string };
 }) {
-  const blog: Blogs = await BlogPage(_id);
+  const res: Blogs = await BlogPage(_id);
+  const blog = JSON.parse(JSON.stringify(res));
   const {
     title,
     subTitle,
@@ -51,25 +42,29 @@ export default async function Blog({
     heading,
     content,
     createdAt,
-    date
+    date,
   } = blog;
   return (
     <>
-      <ReadingTime time={content?.length} date={date} />
-      <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
-        <BlogFormat
-          title={title}
-          subTitle={subTitle}
-          imageAltText={imageAltText}
-          author={author}
-          description={description}
-          quote={quote}
-          quoteDescription={quoteDescription}
-          heading={heading}
-          content={content}
-          urlToImage={imagePost}
-        />
-      </section>
+      {blog && (
+        <>
+          <ReadingTime time={content?.length} date={date} />
+          <section className="flex flex-col gap-8 w-4/5 mx-auto my-8">
+            <BlogFormat
+              title={title}
+              subTitle={subTitle}
+              imageAltText={imageAltText}
+              author={author}
+              description={description}
+              quote={quote}
+              quoteDescription={quoteDescription}
+              heading={heading}
+              content={content}
+              urlToImage={imagePost}
+            />
+          </section>
+        </>
+      )}
     </>
   );
 }
