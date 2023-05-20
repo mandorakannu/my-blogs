@@ -3,8 +3,29 @@ import Navigation from "@components/nav/Navigation";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
 import { Analytics } from "@vercel/analytics/react";
+import ProgressBarLoader from "@components/ProgressBarLoader";
 
-export const metadata = {
+interface MetaDataTypes {
+  title: string;
+  description: string;
+  url: string;
+  keywords: string[];
+  robots: Object;
+  httpEquiv: string;
+  content: string;
+  language: string;
+  revisitAfter: string;
+  author: string;
+  siteName: string;
+  images: Array<Object>;
+  type: string;
+  twitter: Object;
+  verification: Object;
+  favicon: Object;
+  category: string;
+}
+
+export const metadata: MetaDataTypes = {
   title: "Kannu Mandora | Tech Blogger",
   description:
     "Hello everyone!  My name is Kannu Mandora and I am a budding full-stack developer. I am passionate about learning new technologies and developing innovative solutions.   To help me achieve my goal, I have been writing tech blogs to help me learn more about the tools and processes involved in developing web applications. The blogs also provide me with an opportunity to share my experiences with the community.  I am eager to become a professional full-stack developer and I am thankful for all the help and support I have been receiving from the tech community. With more dedication and hard work, I am sure I can make the dream come true.",
@@ -89,6 +110,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ProgressBarLoader />
         <Navigation />
         <Header />
         {children}
