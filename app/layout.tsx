@@ -3,6 +3,7 @@ import Navigation from "@components/nav/Navigation";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
 import { Analytics } from "@vercel/analytics/react";
+import ProgressBarLoader from "@components/ProgressBarLoader";
 
 export const metadata = {
   title: "Kannu Mandora | Tech Blogger",
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navigation />
+        <ProgressBarLoader />
         <Header />
         {children}
         <Analytics />
