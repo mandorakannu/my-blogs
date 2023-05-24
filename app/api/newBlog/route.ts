@@ -3,7 +3,7 @@ import { connectDB, disconnectDB } from "@databases/connectionDB";
 import Post from "@models/posts/posts";
 
 export async function POST(request: NextRequest) {
-  const { title, subTitle, description,qoute,qouteDescription,heading,content,date,author,urlOfImage,imageAltText } = await request.json();
+  const { title, subTitle, description,qoute,qouteDescription,heading,content,date,author,urlToImage,imageAltText } = await request.json();
   try {
     await connectDB();
     await Post.create({
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       content,
       date,
       author,
-      urlOfImage,
+      urlToImage,
       imageAltText
     });
     await disconnectDB();
