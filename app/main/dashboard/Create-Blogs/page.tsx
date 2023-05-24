@@ -25,13 +25,13 @@ export default function CreateBlogs() {
   const titleRef = useRef<HTMLInputElement>(null);
   const subTitleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
-  const qouteRef = useRef<HTMLInputElement>(null);
-  const qouteDescriptionRef = useRef<HTMLInputElement>(null);
+  const quoteRef = useRef<HTMLInputElement>(null);
+  const quoteDescriptionRef = useRef<HTMLInputElement>(null);
   const headingRef = useRef<HTMLTextAreaElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
   const authorRef = useRef<HTMLInputElement>(null);
-  const urlOfImageRef = useRef<HTMLInputElement>(null);
+  const urlToImageRef = useRef<HTMLInputElement>(null);
   const imageAltTextRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = async (event: FormEvent<HTMLFormElement>) => {
@@ -40,13 +40,13 @@ export default function CreateBlogs() {
       !titleRef.current?.value ||
       !subTitleRef.current?.value ||
       !descriptionRef.current?.value ||
-      !qouteRef.current?.value ||
-      !qouteDescriptionRef.current?.value ||
+      !quoteRef.current?.value ||
+      !quoteDescriptionRef.current?.value ||
       !headingRef.current?.value ||
       !contentRef.current?.value ||
       !dateRef.current?.value ||
       !authorRef.current?.value ||
-      !urlOfImageRef.current?.value ||
+      !urlToImageRef.current?.value ||
       !imageAltTextRef.current?.value
     ) {
       return alert("Please fill all the fields");
@@ -56,13 +56,13 @@ export default function CreateBlogs() {
         title: titleRef.current?.value,
         subTitle: subTitleRef.current?.value,
         description: descriptionRef.current?.value,
-        qoute: qouteRef.current?.value,
-        qouteDescription: qouteDescriptionRef.current?.value,
+        quote: quoteRef.current?.value,
+        quoteDescription: quoteDescriptionRef.current?.value,
         heading: headingRef.current?.value,
         content: contentRef.current?.value,
         date: dateRef.current?.value,
         author: authorRef.current?.value,
-        urlOfImage: urlOfImageRef.current?.value,
+        urlToImage: urlToImageRef.current?.value,
         imageAltText: imageAltTextRef.current?.value,
       });
       if (response.status === 200) {
@@ -122,29 +122,29 @@ export default function CreateBlogs() {
           </div>
           <div className="flex justify-evenly items-center">
             <div className="flex flex-col justify-start">
-              <label htmlFor="qoute" className="text-xl font-medium">
-                Qoute
+              <label htmlFor="quote" className="text-xl font-medium">
+                Quote
               </label>
               <input
                 type="text"
-                name="qoute"
-                id="qoute"
+                name="quote"
+                id="quote"
                 className="focus:outline-none bg-red-200 text-black py-2 px-1.5 rounded-sm shadow-md placeholder:text-white"
-                placeholder="Qoute"
-                ref={qouteRef}
+                placeholder="Quote"
+                ref={quoteRef}
               />
             </div>
             <div className="flex flex-col justify-start gap-4">
-              <label htmlFor="qouteDescription" className="text-xl font-medium">
-                Qoute Description
+              <label htmlFor="quoteDescription" className="text-xl font-medium">
+                Quote Description
               </label>
               <input
                 type="text"
-                name="qouteDescription"
-                id="qouteDescription"
+                name="quoteDescription"
+                id="quoteDescription"
                 className="focus:outline-none bg-red-200 text-black py-2 px-1.5 rounded-sm shadow-md placeholder:text-white"
-                placeholder="Qoute Description"
-                ref={qouteDescriptionRef}
+                placeholder="Quote Description"
+                ref={quoteDescriptionRef}
               />
             </div>
           </div>
@@ -189,7 +189,7 @@ export default function CreateBlogs() {
             id="blog_urlOfImage"
             className="focus:outline-none bg-red-200 text-black py-2 px-1.5 rounded-sm shadow-md placeholder:text-white"
             placeholder="Url Of Image"
-            ref={urlOfImageRef}
+            ref={urlToImageRef}
           />
           <input
             type="text"
