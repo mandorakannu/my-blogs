@@ -3,13 +3,21 @@ import { connectDB, disconnectDB } from "@databases/connectionDB";
 import Post from "@models/posts/posts";
 
 export async function POST(request: NextRequest) {
-  const { blogTitle, blogDescription, blogContent } = await request.json();
+  const { title, subTitle, description,qoute,qouteDescription,heading,content,date,author,urlOfImage,imageAltText } = await request.json();
   try {
     await connectDB();
     await Post.create({
-      title: blogTitle,
-      description: blogDescription,
-      content: blogContent,
+      title,
+      subTitle,
+      description,
+      qoute,
+      qouteDescription,
+      heading,
+      content,
+      date,
+      author,
+      urlOfImage,
+      imageAltText
     });
     await disconnectDB();
     return new Response(JSON.stringify({ message: "success" }), {
