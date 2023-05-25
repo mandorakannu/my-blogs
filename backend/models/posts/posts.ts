@@ -13,7 +13,7 @@ const PostSchema = new Schema({
     required: true,
     unique: true
   },
-  urlOfImage: {
+  urlToImage: {
     type: String,
     required: true,
     unique: true
@@ -33,12 +33,12 @@ const PostSchema = new Schema({
     required: true,
     unique: true
   },
-  qoute: {
+  quote: {
     type: String,
     required: true,
     unique: true
   },
-  qouteDescription: {
+  quoteDescription: {
     type: String,
     required: true,
     unique: true
