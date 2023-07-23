@@ -8,7 +8,7 @@ export default function SocialIcons({classes}: {classes?: string}) {
           <Link href="https://instagram.com/mandorakannu/" target="_blank">
             <BsInstagram className="text-2xl transition-all delay-75 ease-in-out rounded p-1 hover:bg-red-200" />
           </Link>
-          <Link href="https://github.com/Kannu-Mandora/" target="_blank">
+          <Link href="https://github.com/mandorakannu/" target="_blank">
             <BsGithub className="text-2xl transition-all delay-75 ease-in-out rounded p-1 hover:bg-red-200" />
           </Link>
           <Link
