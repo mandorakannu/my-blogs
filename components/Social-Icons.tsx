@@ -17,7 +17,7 @@ export default function SocialIcons({classes}: {classes?: string}) {
           >
             <BsLinkedin className="text-2xl transition-all delay-75 ease-in-out rounded p-1 hover:bg-red-200" />
           </Link>
-          <Link href="https://twitter.com/KannuMandora/" target="_blank">
+          <Link href="https://twitter.com/mandorakannu/" target="_blank">
             <BsTwitter className="text-2xl transition-all delay-75 ease-in-out rounded p-1 hover:bg-red-200" />
           </Link>
         </div>
