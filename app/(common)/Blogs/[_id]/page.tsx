@@ -1,6 +1,6 @@
 import ReadingTime from "@components/blogsContent/ReadingTime";
 import BlogFormat from "@components/blogsContent/BlogFormat";
-import { connectDB } from "@databases/connectionDB";
+import { connectDB, disconnectDB } from "@databases/connectionDB";
 import posts from "@models/posts/posts";
 
 type Blogs = {
@@ -21,6 +21,7 @@ type Blogs = {
 const BlogPage = async (_id: string): Promise<any> => {
   await connectDB();
   const blog = await posts.findById(_id);
+  disconnectDB().then(() => console.log("DB disconnected"));
   return blog;
 };
 
