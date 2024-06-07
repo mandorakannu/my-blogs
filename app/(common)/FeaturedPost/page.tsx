@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import featuredPost from "@images/featured-post.webp";
 import { Outfit } from "next/font/google";
 import ReadingTime from "@components/blogsContent/ReadingTime";

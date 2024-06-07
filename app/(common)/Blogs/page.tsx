@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { connectDB, disconnectDB } from "@databases/connectionDB";
 import posts from "@models/posts/posts";
 import { Outfit } from "next/font/google";
