@@ -50,17 +50,17 @@ export const metadata: MetaDataTypes = {
   language: "English",
   revisitAfter: "1 days",
   author: "Kannu Mandora",
-  url: "https://mandorakannu.me",
+  url: "https://mandorakannu.xyz",
   siteName: "Kannu Mandora | Tech Blogger",
   images: [
     {
-      url: "https://mandorakannu.me/images/logo.png",
+      url: "https://mandorakannu.xyz/images/logo.png",
       width: 800,
       height: 600,
       alt: "Kannu Mandora | Tech Blogger",
     },
     {
-      url: "https://mandorakannu.me/images/logo.png",
+      url: "https://mandorakannu.xyz/images/logo.png",
       width: 1800,
       height: 1600,
       alt: "Kannu Mandora | Tech Blogger",
