@@ -1,4 +1,4 @@
-import { connectDB } from "@databases/connectionDB";
+import { connectDB, disconnectDB } from "@databases/connectionDB";
 import posts from "@models/posts/posts";
 import { Outfit } from "next/font/google";
 import Link from "next/link";
@@ -25,6 +25,7 @@ const getAllBlogs = async () => {
   try {
     await connectDB();
     const blogs = await posts.find({});
+    disconnectDB().then(() => console.log("DB disconnected"));
     return blogs;
   } catch (error) {
     console.log(error);

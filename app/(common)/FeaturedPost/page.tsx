@@ -27,8 +27,8 @@ const getFeaturedPost = async (): Promise<any> => {
     const _id = process.env.FEATURED_POST_ID;
     await connectDB();
     const featuredPost = await posts.findById(_id);
+     disconnectDB().then(() => console.log("DB disconnected"));
     return featuredPost;
-    await disconnectDB();
   } catch (err) {
     console.error(err);
   }
