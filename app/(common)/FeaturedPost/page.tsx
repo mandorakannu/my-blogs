@@ -2,6 +2,8 @@ import featuredPost from "@images/featured-post.webp";
 import { Outfit } from "next/font/google";
 import ReadingTime from "@components/blogsContent/ReadingTime";
 import BlogFormat from "@components/blogsContent/BlogFormat";
+import { connectDB, disconnectDB } from "@databases/connectionDB";
+import posts from "@models/posts/posts";
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
@@ -21,15 +23,14 @@ type MainContent = {
 };
 
 const getFeaturedPost = async (): Promise<any> => {
-  const BASE_URL = process.env.BASE_URL;
   try {
-    const response = await fetch(`${BASE_URL}/api/featuredPost`, {
-      cache: "force-cache",
-    });
-    const data = await response.json();
-    return data;
-  } catch (error: unknown) {
-    console.log(error);
+    const _id = process.env.FEATURED_POST_ID;
+    await connectDB();
+    const featuredPost = await posts.findById(_id);
+    return featuredPost;
+    await disconnectDB();
+  } catch (err) {
+    console.error(err);
   }
 };
 

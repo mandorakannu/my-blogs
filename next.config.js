@@ -4,7 +4,10 @@ const nextConfig = {
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
-    domains: ['ik.imagekit.io'],
+    remotePatterns: [{
+      hostname: '"ik.imagekit.io"',
+      protocol: "https",
+    }]
   },
   webpack(config) {
     config.experiments = { ...config.experiments, topLevelAwait: true };

@@ -63,5 +63,5 @@ const PostSchema = new Schema({
     default: Date.now,
   },
 });
-
-export default mongoose.models.Post || mongoose.model("Post", PostSchema);
+export default mongoose.models?.Post || mongoose.model("Post", PostSchema);
+// export default mongoose.models.Post || mongoose.model("Post", PostSchema);

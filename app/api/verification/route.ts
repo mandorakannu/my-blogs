@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         path: "/",
         secure: true,
         sameSite: "strict",
-        expries: new Date(Date.now() + 1000 * 60 * 60)
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
       });
       return new Response(JSON.stringify({ message: "success" }), headers);
     }
